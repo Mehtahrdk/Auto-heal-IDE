@@ -1,0 +1,236 @@
+:root {
+  --vscode-bg: #1e1e1e;
+  --vscode-sidebar: #252526;
+  --vscode-header: #333333;
+  --vscode-border: #3c3c3c;
+  --vscode-text: #cccccc;
+  --vscode-accent: #007acc;
+  --vscode-accent-hover: #005f9e;
+  --vscode-success: #89d185;
+  --vscode-error: #f48771;
+  --vscode-input: #3c3c3c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--vscode-bg);
+  color: var(--vscode-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden; /* Prevents whole-page scrolling */
+}
+
+/* IDE Layout */
+.ide-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.ide-header {
+  height: 35px;
+  background-color: var(--vscode-header);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  border-bottom: 1px solid var(--vscode-border);
+  font-size: 13px;
+  user-select: none;
+}
+
+.ide-header-logo {
+  font-weight: bold;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ide-body {
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 35px);
+}
+
+/* Resizable Handles */
+.resize-handle-vertical {
+  width: 4px;
+  background-color: var(--vscode-bg);
+  cursor: col-resize;
+  transition: background-color 0.2s;
+  border-left: 1px solid var(--vscode-border);
+  border-right: 1px solid var(--vscode-border);
+}
+
+.resize-handle-horizontal {
+  height: 4px;
+  background-color: var(--vscode-bg);
+  cursor: row-resize;
+  transition: background-color 0.2s;
+  border-top: 1px solid var(--vscode-border);
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+.resize-handle-vertical:hover,
+.resize-handle-vertical:active,
+.resize-handle-horizontal:hover,
+.resize-handle-horizontal:active {
+  background-color: var(--vscode-accent);
+}
+
+/* Sidebar Controls */
+.sidebar {
+  background-color: var(--vscode-sidebar);
+  height: 100%;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #858585;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 12px;
+}
+
+.ide-input {
+  background-color: var(--vscode-input);
+  border: 1px solid transparent;
+  color: var(--vscode-text);
+  padding: 8px 10px;
+  border-radius: 3px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.ide-input:focus {
+  border-color: var(--vscode-accent);
+}
+
+.drop-zone {
+  border: 1px dashed #555;
+  background-color: #2a2d2e;
+  padding: 25px 15px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.drop-zone:hover {
+  border-color: var(--vscode-accent);
+  background-color: #2d3133;
+}
+
+.btn-primary {
+  background-color: var(--vscode-accent);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--vscode-accent-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Terminal */
+.terminal-container {
+  background-color: var(--vscode-bg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-header {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--vscode-border);
+  color: #e7e7e7;
+}
+
+.terminal-body {
+  padding: 10px 15px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.log-line {
+  margin-bottom: 4px;
+  display: flex;
+  gap: 10px;
+}
+
+.log-timestamp {
+  color: #858585;
+}
+
+.log-info { color: #dcdcaa; }
+.log-success { color: var(--vscode-success); }
+.log-error { color: var(--vscode-error); }
+
+.pulse-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: var(--vscode-text);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Monaco Container */
+.editor-container {
+  height: 100%;
+  width: 100%;
+}
