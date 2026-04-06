@@ -74,12 +74,8 @@ def run_python_script(file_path: str) -> str:
         dir_name = os.path.dirname(abs_file_path)
         file_name = os.path.basename(abs_file_path)
 
-        docker_cmd = [
-            "docker", "run", "--rm", "-v", f"{dir_name}:/app", 
-            "-w", "/app", "python:3.13-slim", "python", file_name      
-        ]
-        
-        result = subprocess.run(docker_cmd, capture_output=True, text=True, timeout=15)
+        cmd = ["python", file_name]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
         
         if result.returncode == 0:
             return f"Execution Successful! Output:\n{result.stdout}"
