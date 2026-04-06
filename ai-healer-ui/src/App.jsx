@@ -50,7 +50,7 @@ function App() {
       addLog('info', 'Executing API request to Agent server...');
       addLog('info', '[Standby] Depending on complexity, this may take 1-2 minutes.');
       
-      const response = await fetch('http://127.0.0.1:8000/heal', {
+      const response = await fetch('https://auto-heal-ide-backend.onrender.com', {
         method: 'POST',
         body: formData,
       });
